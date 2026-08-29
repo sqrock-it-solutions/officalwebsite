@@ -1,0 +1,21 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+  images:{
+    remotePatterns:[
+      {
+        hostname:"images.unsplash.com"
+      },
+      {
+        hostname:"res.cloudinary.com"
+      }
+
+      ,{
+        hostname:"picsum.photos"
+      }
+    ]
+  }
+};
+
+export default nextConfig;
