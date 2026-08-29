@@ -13,6 +13,7 @@ interface NavLink {
   label: string
 }
 
+
 const NAV_LINKS: NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
