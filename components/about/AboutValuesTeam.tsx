@@ -162,13 +162,13 @@ const AboutValuesTeam: React.FC = () => {
               <p className="text-gray-600 max-w-md mb-4 md:mb-0">
                 A passionate team of developers, designers, strategists, and problem solvers.
               </p>
-              <Link 
+              {/* <Link 
                 href="/team" 
                 className="font-bold text-[#0a0a0a] flex items-center gap-2 hover:text-gray-600 transition-colors justify-end"
               >
                 View All Team Members
                 <ArrowRight size={18} className="inline-block" />
-              </Link>
+              </Link> */}
             </div>
           </div>
 

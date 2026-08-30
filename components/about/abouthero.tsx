@@ -48,10 +48,7 @@ const AboutHero: React.FC = () => {
               {/* Text Overlay - Top Right */}
               <div className="absolute top-8 right-8 p-8 text-right">
                 <div className="text-white/90 font-medium text-lg leading-snug drop-shadow-lg">
-                  <p>Ideas.</p>
-                  <p>Strategy.</p>
-                  <p>Technology.</p>
-                  <p>Real Impact.</p>
+                 
                 </div>
                 {/* White horizontal line */}
                 <div className="w-12 h-0.5 bg-white/70 ml-auto mt-3"></div>

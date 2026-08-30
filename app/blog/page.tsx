@@ -68,7 +68,7 @@ export default async function BlogPage({
         <BlogContent
           initialPosts={blogsResult.blogs}
           initialPopularPosts={popularPosts}
-          initialCategories={categories}
+          initialCategories={categories as any}
           initialTotalPages={blogsResult.totalPages}
           initialCurrentPage={page}
           initialSearch={search}

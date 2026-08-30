@@ -24,7 +24,7 @@ export default async function page() {
       <MetricsAndProblemSolution />
       <Services />
       <TechnologiesAndProjects />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Process />
       {/* <TestimonialsAndProcess /> */}
       <CTA />

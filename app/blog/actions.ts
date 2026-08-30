@@ -33,7 +33,7 @@ export interface Category {
   updatedAt: Date
 }
 
-export interface BlogPostWithReadTime extends BlogPost {
+export interface BlogPostWithReadTime extends Omit<BlogPost, 'category'> {
   readTime: string
   category: string
   categorySlug: string
