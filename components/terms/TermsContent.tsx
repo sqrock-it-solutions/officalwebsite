@@ -153,21 +153,21 @@ const TermsContent = () => {
                         <Mail className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
                         <div>
                           <p className="text-sm font-bold text-[#0a0a0a]">Email</p>
-                          <p className="text-xs text-gray-500">support@company.com</p>
+                          <p className="text-xs text-gray-500">support@sqrock.cloud</p>
                         </div>
                       </div>
                       <div className="bg-gray-50 rounded-xl p-4 flex items-start gap-3">
                         <Phone className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
                         <div>
                           <p className="text-sm font-bold text-[#0a0a0a]">Phone</p>
-                          <p className="text-xs text-gray-500">+1 (555) 123-4567</p>
+                          <p className="text-xs text-gray-500">+91 86198 19400</p>
                         </div>
                       </div>
                       <div className="bg-gray-50 rounded-xl p-4 flex items-start gap-3">
                         <MapPin className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
                         <div>
                           <p className="text-sm font-bold text-[#0a0a0a]">Address</p>
-                          <p className="text-xs text-gray-500">123 Main St, NY 10001</p>
+                          <p className="text-xs text-gray-500">Jaipur Rajasthan India</p>
                         </div>
                       </div>
                     </div>

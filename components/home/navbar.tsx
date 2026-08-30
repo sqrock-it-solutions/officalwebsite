@@ -491,7 +491,7 @@ const Navbar: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-gray-600">
 
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+916378695548"
                     className="flex items-center gap-2 hover:text-black transition-colors"
                   >
                     <Phone size={15} />
@@ -507,7 +507,7 @@ const Navbar: React.FC = () => {
                   </a>
 
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/916378695548"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-black transition-colors"

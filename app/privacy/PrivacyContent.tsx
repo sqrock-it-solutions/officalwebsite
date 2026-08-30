@@ -254,7 +254,7 @@ const PrivacyContent: React.FC = () => {
                 <Mail className="w-5 h-5 text-[#0a0a0a] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold text-[#0a0a0a]">Email</h4>
-                  <p className="text-xs text-gray-500">privacy@sqrockit.com</p>
+                  <p className="text-xs text-gray-500">privacy@sqrock.cloud</p>
                 </div>
               </div>
               
@@ -263,7 +263,7 @@ const PrivacyContent: React.FC = () => {
                 <Phone className="w-5 h-5 text-[#0a0a0a] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold text-[#0a0a0a]">Phone</h4>
-                  <p className="text-xs text-gray-500">+1 (555) 123-4567</p>
+                  <p className="text-xs text-gray-500">+91 86198 19400</p>
                 </div>
               </div>
               
@@ -272,7 +272,7 @@ const PrivacyContent: React.FC = () => {
                 <MapPin className="w-5 h-5 text-[#0a0a0a] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold text-[#0a0a0a]">Address</h4>
-                  <p className="text-xs text-gray-500">123 Tech Park, Suite 100</p>
+                  <p className="text-xs text-gray-500">Jaipur Rajasthan India</p>
                 </div>
               </div>
             </div>

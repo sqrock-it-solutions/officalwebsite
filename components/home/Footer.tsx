@@ -6,11 +6,12 @@ import {
   Mail, 
   Phone, 
   MapPin,
-  Mail as Linkedin,
-   Mail as Twitter,
-   Mail as Instagram,
-   Mail as Youtube
+
 } from 'lucide-react';
+
+import { FiLinkedin as Linkedin, FiTwitter as Twitter, FiInstagram as Instagram , FiYoutube as Youtube } from 'react-icons/fi';
+
+
 
 const Footer: React.FC = () => {
   return (
@@ -85,8 +86,8 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-gray-400 mt-0.5 flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  +91 98765 43210
+                <a href="tel:+918619819400" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  +91 86198 19400
                 </a>
               </li>
               <li className="flex items-start gap-3">

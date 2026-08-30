@@ -1,9 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/home/navbar";
 import Footer from "@/components/home/Footer";
+import NextTopLoader from 'nextjs-toploader';
+import { Suspense } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
 
@@ -110,10 +114,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", roboto.variable)}
     >
       <body className="min-h-full flex flex-col">
+        <NextTopLoader color="black" />
         <Navbar />
-        {children}
+        <Suspense fallback={<LoadingScreen />}>
+          {children}
+        </Suspense>
         <Footer />
-        </body>
+      </body>
     </html>
   );
 }
