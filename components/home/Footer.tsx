@@ -2,14 +2,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  Mail, 
-  Phone, 
+import {
+  Mail,
+  Phone,
   MapPin,
 
 } from 'lucide-react';
 
-import { FiLinkedin as Linkedin, FiTwitter as Twitter, FiInstagram as Instagram , FiYoutube as Youtube } from 'react-icons/fi';
+import { FiLinkedin as Linkedin, FiTwitter as Twitter, FiInstagram as Instagram, FiYoutube as Youtube } from 'react-icons/fi';
 
 
 
@@ -56,8 +56,9 @@ const Footer: React.FC = () => {
               <li><Link href="/" className="text-gray-400 hover:text-white text-sm transition-colors">Home</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</Link></li>
               <li><Link href="/services" className="text-gray-400 hover:text-white text-sm transition-colors">Services</Link></li>
-              <li><Link href="/portfolio" className="text-gray-400 hover:text-white text-sm transition-colors">Portfolio</Link></li>
               <li><Link href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors">Blog</Link></li>
+              <li><Link href="/career" className="text-gray-400 hover:text-white text-sm transition-colors">Career</Link></li>
+
               <li><Link href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</Link></li>
             </ul>
           </div>

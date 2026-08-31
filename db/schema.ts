@@ -155,3 +155,160 @@ export const heroAnnouncement = pgTable("hero_announcement", {
     withTimezone: true,
   }).defaultNow().notNull(),
 });
+
+
+
+
+/* =========================
+   JOB CATEGORIES
+========================= */
+
+export const jobCategories = pgTable("job_categories", {
+  id: serial("id").primaryKey(),
+
+  name: varchar("name", { length: 100 }).notNull().unique(),
+
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+
+  description: text("description"),
+
+  isActive: boolean("is_active").default(true).notNull(),
+
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+});
+
+
+/* =========================
+   JOB OPENINGS
+========================= */
+
+export const jobOpenings = pgTable("job_openings", {
+  id: serial("id").primaryKey(),
+
+  title: varchar("title", { length: 200 }).notNull(),
+
+  slug: varchar("slug", { length: 200 }).notNull().unique(),
+
+  shortDescription: text("short_description"),
+
+  description: text("description").notNull(),
+
+  requirements: text("requirements"),
+
+  responsibilities: text("responsibilities"),
+
+  qualifications: text("qualifications"),
+
+  skills: text("skills"),
+
+  categoryId: integer("category_id").references(
+    () => jobCategories.id,
+    {
+      onDelete: "set null",
+    }
+  ),
+
+  employmentType: varchar("employment_type", {
+    length: 50,
+  }).default("Full-time").notNull(),
+
+  workMode: varchar("work_mode", {
+    length: 50,
+  }).default("On-site").notNull(),
+
+  location: varchar("location", {
+    length: 150,
+  }),
+
+  salary: varchar("salary", {
+    length: 100,
+  }),
+
+  experience: varchar("experience", {
+    length: 100,
+  }),
+
+  openings: integer("openings").default(1).notNull(),
+
+  applicationDeadline: timestamp("application_deadline", {
+    withTimezone: true,
+  }),
+
+  isActive: boolean("is_active").default(true).notNull(),
+
+  isFeatured: boolean("is_featured").default(false).notNull(),
+
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+});
+
+
+/* =========================
+   JOB APPLICATIONS
+========================= */
+
+export const jobApplications = pgTable("job_applications", {
+  id: serial("id").primaryKey(),
+
+  jobOpeningId: integer("job_opening_id")
+    .references(() => jobOpenings.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+
+  name: varchar("name", {
+    length: 150,
+  }).notNull(),
+
+  email: varchar("email", {
+    length: 255,
+  }).notNull(),
+
+  phone: varchar("phone", {
+    length: 30,
+  }),
+
+  location: varchar("location", {
+    length: 150,
+  }),
+
+  resumeUrl: text("resume_url"),
+
+  coverLetter: text("cover_letter"),
+
+  portfolioUrl: text("portfolio_url"),
+
+  linkedinUrl: text("linkedin_url"),
+
+  githubUrl: text("github_url"),
+
+  experience: varchar("experience", {
+    length: 100,
+  }),
+
+  status: varchar("status", {
+    length: 50,
+  }).default("Applied").notNull(),
+
+  notes: text("notes"),
+
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+  }).defaultNow().notNull(),
+});
+

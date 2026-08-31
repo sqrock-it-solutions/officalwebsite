@@ -17,6 +17,7 @@ import {
   Mail,
   MapPin,
   ExternalLink,
+  Luggage,
 } from 'lucide-react';
 
 
@@ -68,6 +69,13 @@ const mainPages = [
     description: 'A complete overview of all important pages available on our website.',
     href: '/sitemap',
     icon: Network,
+    current: true,
+  },
+   {
+    title: 'Career',
+    description: 'A complete overview of all important pages available on our website.',
+    href: '/career',
+    icon: Luggage,
     current: true,
   },
 ];

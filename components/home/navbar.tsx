@@ -20,6 +20,8 @@ const NAV_LINKS: NavLink[] = [
   { href: '/services', label: 'Services' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
+  { href: '/career', label: 'Career' },
+
 ]
 
 const Navbar: React.FC = () => {
