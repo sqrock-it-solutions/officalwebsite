@@ -5,7 +5,7 @@ const MetricsAndProblemSolution: React.FC = () => {
   const metrics = [
     { value: '150+', label: 'Projects Delivered' },
     { value: '80+', label: 'Happy Clients' },
-    { value: '4+', label: 'Years of Experience' },
+    { value: '2+', label: 'Years of Experience' },
     { value: '98%', label: 'Client Satisfaction' },
   ];
 

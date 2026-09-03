@@ -297,9 +297,9 @@ function getDefaultHeroContent(): HeroDataWithStats {
     createdAt: new Date(),
     updatedAt: new Date(),
     stats: {
-      happyClients: 250,
-      projectsDelivered: 500,
-      yearsExperience: 10,
+      happyClients: 80,
+      projectsDelivered: 150,
+      yearsExperience: 2,
     }
   }
 }
