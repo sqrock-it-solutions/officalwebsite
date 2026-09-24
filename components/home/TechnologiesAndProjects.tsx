@@ -6,22 +6,22 @@ const projects = [
   {
     name: 'E-Commerce Website',
     type: 'E-Commerce Experience',
-    image: '/assets/services/1.png',
+    image: '/ecommerse-website.png',
   },
   {
     name: 'Education Platform',
     type: 'Learning Technology',
-    image: '/assets/services/3.png',
+    image: '/education-website.png',
   },
   {
     name: 'Business Mobile App',
     type: 'Cross-Platform Product',
-    image: '/assets/services/5.png',
+    image: '/mobile-appdevelopment.png',
   },
   {
     name: 'Company Website',
     type: 'Corporate Web Design',
-    image: '/assets/services/4.png',
+    image: '/company-website.png',
   },
 ]
 
