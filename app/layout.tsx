@@ -1,71 +1,53 @@
-// app/layout.tsx
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import Navbar from "@/components/home/navbar";
-import Footer from "@/components/home/Footer";
-import NextTopLoader from 'nextjs-toploader';
-import { Suspense } from "react";
-import LoadingScreen from "@/components/LoadingScreen";
-
-const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import NextTopLoader from 'nextjs-toploader'
+import { Suspense } from 'react'
+import LoadingScreen from '@/components/LoadingScreen'
+import './globals.css'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'SQROCK IT Solutions | Scalable Software for Growing Businesses',
-
   description:
     'SQROCK IT Solutions builds scalable websites, mobile apps, custom software, and IT solutions that help businesses grow, automate operations, and succeed digitally.',
-
   keywords: [
     'SQROCK IT Solutions',
     'software development company',
     'web development company',
     'mobile app development',
     'custom software development',
-    'IT consulting',
     'digital solutions',
     'software company India',
   ],
-
   authors: [
     {
       name: 'SQROCK IT Solutions',
       url: 'https://sqrock.cloud',
     },
   ],
-
   creator: 'SQROCK IT Solutions',
   publisher: 'SQROCK IT Solutions',
-
   metadataBase: new URL('https://sqrock.cloud'),
-
   alternates: {
     canonical: '/',
   },
-
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: 'https://sqrock.cloud',
     siteName: 'SQROCK IT Solutions',
-
-    title:
-      'SQROCK IT Solutions | Scalable Software for Growing Businesses',
-
+    title: 'SQROCK IT Solutions | Scalable Software for Growing Businesses',
     description:
       'We build scalable websites, mobile apps, custom software, and IT solutions for startups, SMEs, and growing businesses.',
-
     images: [
       {
         url: '/og-image.png',
@@ -75,23 +57,16 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: 'summary_large_image',
-
-    title:
-      'SQROCK IT Solutions | Scalable Software for Growing Businesses',
-
+    title: 'SQROCK IT Solutions | Scalable Software for Growing Businesses',
     description:
       'Scalable websites, mobile apps, custom software, and IT solutions for growing businesses.',
-
     images: ['/og-image.png'],
   },
-
   robots: {
     index: true,
     follow: true,
-
     googleBot: {
       index: true,
       follow: true,
@@ -100,25 +75,19 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-};
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", roboto.variable)}
-    >
-      <body className="min-h-full flex flex-col">
-        <NextTopLoader color="black" />
-        <Suspense fallback={<LoadingScreen />}>
-          {children}
-        </Suspense>
+    <html lang="en" className={`h-full ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <NextTopLoader color="#EF2B2D" />
+        <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
       </body>
     </html>
-  );
+  )
 }

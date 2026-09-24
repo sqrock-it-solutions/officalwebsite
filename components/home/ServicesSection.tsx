@@ -1,116 +1,83 @@
-import React from 'react';
-import { 
-  Code2, 
-  Smartphone, 
-  Settings, 
-  BarChart, 
+import Link from 'next/link'
+import {
+  ArrowRight,
+  CloudCog,
+  Code2,
+  Headset,
   Megaphone,
-  ArrowRight 
-} from 'lucide-react';
-import Link from 'next/link';
+  PanelsTopLeft,
+  Smartphone,
+} from 'lucide-react'
 
-interface Service {
-  id: number;
-  icon: React.ElementType;
-  title: string;
-  description: string;
-}
-
-const servicesData: Service[] = [
+const services = [
   {
-    id: 1,
+    title: 'Website Development',
+    description: 'Modern, responsive websites designed for speed, usability, and real business impact.',
     icon: Code2,
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks for exceptional performance and user experience.'
   },
   {
-    id: 2,
-    icon: Smartphone,
     title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile solutions that engage users and drive business growth.'
+    description: 'Android and cross-platform apps built for reliable, engaging everyday experiences.',
+    icon: Smartphone,
   },
   {
-    id: 3,
-    icon: Settings,
-    title: 'Custom Software',
-    description: 'Tailored software solutions designed to automate workflows and solve complex business challenges.'
+    title: 'Custom Software Development',
+    description: 'Business-specific software that simplifies workflows and solves complex challenges.',
+    icon: PanelsTopLeft,
   },
   {
-    id: 4,
-    icon: BarChart,
-    title: 'IT Consulting',
-    description: 'Strategic technology guidance to optimize infrastructure and align IT with business objectives.'
-  },
-  {
-    id: 5,
-    icon: Megaphone,
     title: 'Digital Marketing',
-    description: 'Data-driven marketing strategies to boost visibility, generate leads, and increase conversions.'
-  }
-];
+    description: 'SEO, social media, and performance marketing that drives measurable growth.',
+    icon: Megaphone,
+  },
+  {
+    title: 'Cloud & DevOps Solutions',
+    description: 'Secure infrastructure, automated deployment, and scalable cloud operations.',
+    icon: CloudCog,
+  },
+  {
+    title: 'Maintenance & Support',
+    description: 'Continuous technical support that keeps every digital experience running smoothly.',
+    icon: Headset,
+  },
+]
 
-const Services: React.FC = () => {
+export default function Services() {
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          {/* Left side - Text */}
-          <div>
-            <span className="text-xs font-bold text-gray-600 tracking-wider uppercase block mb-3">
-              OUR SERVICES
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a0a] leading-tight mb-3">
-              Complete IT Solutions Under One Roof.
-            </h2>
-            <p className="text-gray-600 md:text-lg">
-              From idea to execution, we provide end-to-end IT services to help your business grow.
-            </p>
-          </div>
-
-          {/* Right side - View All Link */}
-          <Link 
-            href="/services" 
-            className="font-bold text-[#0a0a0a] hover:text-gray-600 transition-colors flex items-center gap-2 flex-shrink-0"
-          >
-            View All Services
-            <ArrowRight size={18} className="inline-block" />
-          </Link>
+    <section id="services" className="bg-white py-24 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="reveal-on-scroll mx-auto max-w-3xl text-center">
+          <span className="text-xs font-bold uppercase tracking-[0.24em] text-[#EF2B2D]">What We Do</span>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#0F0F10] sm:text-5xl lg:text-6xl">Our Services</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-black/55 sm:text-lg">
+            From first idea to long-term support, we build digital products that solve meaningful business problems.
+          </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {servicesData.map((service) => {
-            const IconComponent = service.icon;
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => {
+            const Icon = service.icon
+
             return (
-              <div
-                key={service.id}
-                className="group bg-gray-50 border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              <Link
+                key={service.title}
+                href="/services"
+                className="group reveal-on-scroll flex min-h-[300px] flex-col rounded-[22px] border border-black/[0.08] bg-[#F5F5F5] p-7 transition duration-300 hover:-translate-y-1.5 hover:border-[#EF2B2D]/25 hover:bg-white hover:shadow-[0_22px_55px_rgba(15,15,16,.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF2B2D]"
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <IconComponent className="w-10 h-10 text-[#0a0a0a]" />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-[#0a0a0a] mb-3">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Bottom Arrow with hover effect */}
-                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#0a0a0a] group-hover:translate-x-1 transition-all" />
-              </div>
-            );
+                <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-[#EF2B2D] text-white shadow-[0_12px_28px_rgba(239,43,45,.2)] transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105">
+                  <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <h3 className="mt-8 text-xl font-semibold tracking-[-0.02em] text-[#0F0F10]">{service.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-black/55">{service.description}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-semibold text-[#0F0F10]">
+                  Learn More
+                  <ArrowRight className="h-4 w-4 text-[#EF2B2D] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
+            )
           })}
         </div>
       </div>
     </section>
-  );
-};
-
-export default Services;
+  )
+}

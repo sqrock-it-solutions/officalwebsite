@@ -3,7 +3,7 @@
 
 import { db } from '@/db'
 import { heroAnnouncement, blogs } from '@/db/schema'
-import { desc, eq, and, count } from 'drizzle-orm'
+import { desc, eq, count } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 
 // Types
@@ -19,12 +19,7 @@ export interface HeroData {
   updatedAt: Date
 }
 
-export interface HeroDataWithStats extends HeroData {
-  stats?: {
-    happyClients: number
-    projectsDelivered: number
-    yearsExperience: number
-  }
+export interface HeroDataWithBlog extends HeroData {
   blog?: {
     id: number
     title: string
@@ -109,6 +104,7 @@ export async function getAllHeroContent({
               id: blogs.id,
               title: blogs.title,
               slug: blogs.slug,
+              featuredImage: blogs.featuredImage,
             })
             .from(blogs)
             .where(eq(blogs.id, item.blogId))
@@ -147,6 +143,7 @@ export async function getAllBlogsForHero() {
         id: blogs.id,
         title: blogs.title,
         slug: blogs.slug,
+        featuredImage: blogs.featuredImage,
       })
       .from(blogs)
       .where(eq(blogs.isPublished, true))
@@ -271,35 +268,28 @@ export async function deleteHeroContent(id: number) {
 }
 
 // Helper function to format hero data with default stats
-function formatHeroData(data: any, blogData: any = null): HeroDataWithStats {
+function formatHeroData(
+  data: typeof heroAnnouncement.$inferSelect,
+  blogData: NonNullable<HeroDataWithBlog['blog']> | null = null,
+): HeroDataWithBlog {
   return {
     ...data,
-    stats: {
-      happyClients: 250,
-      projectsDelivered: 500,
-      yearsExperience: 10,
-    },
     blog: blogData || null,
   }
 }
 
 // Default hero content if nothing in DB
-function getDefaultHeroContent(): HeroDataWithStats {
+function getDefaultHeroContent(): HeroDataWithBlog {
   return {
     id: 0,
-    heroHeading: 'We Build Scalable Software for Growing Businesses',
-    heroSubHeading: 'Custom Software • Web • Mobile',
-    heroShortDescription: 'Custom software, web & mobile solutions to transform your ideas into powerful digital products.',
+    heroHeading: 'Your Ideas. Our Technology. Real Impact.',
+    heroSubHeading: 'We Build Digital Solutions',
+    heroShortDescription: 'A website development agency and software company building modern digital solutions for businesses.',
     heroImage: '/heroimg.png',
     content: null,
     blogId: null,
     blog: null,
     createdAt: new Date(),
     updatedAt: new Date(),
-    stats: {
-      happyClients: 80,
-      projectsDelivered: 150,
-      yearsExperience: 2,
-    }
   }
 }

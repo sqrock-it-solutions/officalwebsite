@@ -1,209 +1,224 @@
-// components/CTA.tsx
 'use client'
 
-import React, { useState } from 'react'
-import { Check, ArrowRight, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
+import Link from 'next/link'
+import { AlertCircle, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 import { submitCTAForm } from '@/actions/home/cta'
 
-const CTA: React.FC = () => {
+const initialFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  company: '',
+  description: '',
+}
+
+export default function CTA() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    description: '',
-  })
+  const [formData, setFormData] = useState(initialFormData)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = event.target
+    setFormData((current) => ({ ...current, [id]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setLoading(true)
     setSuccess(null)
     setError(null)
-    setLoading(true)
+
+    const payload = new FormData()
+    Object.entries(formData).forEach(([key, value]) => payload.append(key, value))
 
     try {
-      const formDataObj = new FormData()
-      formDataObj.append('name', formData.name)
-      formDataObj.append('email', formData.email)
-      formDataObj.append('phone', formData.phone)
-      formDataObj.append('company', formData.company)
-      formDataObj.append('description', formData.description)
-
-      const result = await submitCTAForm(formDataObj)
-
+      const result = await submitCTAForm(payload)
       if (result.success) {
         setSuccess(result.message)
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          description: '',
-        })
-        setTimeout(() => setSuccess(null), 5000)
+        setFormData(initialFormData)
       } else {
         setError(result.message)
-        setTimeout(() => setError(null), 5000)
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong. Please try again.')
-      setTimeout(() => setError(null), 5000)
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <section className="bg-[#0a0a0a] py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          {/* Left Column - Text & Benefits */}
-          <div>
-            <span className="text-xs font-bold text-gray-400 tracking-wider uppercase block mb-4">
-              LET'S BUILD TOGETHER
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
-              Ready to Turn Your Idea into Reality?
-            </h2>
-            <p className="text-gray-400 text-lg mb-8">
-              Book a free consultation and get expert advice for your business.
-            </p>
-            
-            {/* Benefits Checklist */}
-            <div className="flex flex-wrap gap-4 sm:gap-6 text-sm text-gray-300 font-medium">
-              <span className="flex items-center gap-2">
-                <Check size={16} className="text-white" />
-                Free Consultation
-              </span>
-              <span className="flex items-center gap-2">
-                <Check size={16} className="text-white" />
-                No Obligation
-              </span>
-              <span className="flex items-center gap-2">
-                <Check size={16} className="text-white" />
-                Quick Response
-              </span>
+    <section id="contact" className="relative isolate overflow-hidden bg-[#0F0F10] py-24 sm:py-28 lg:py-32">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-30"
+        style={{
+          background:
+            'radial-gradient(circle at 14% 30%, rgba(239,43,45,.22), transparent 34%), radial-gradient(circle at 85% 70%, rgba(239,43,45,.16), transparent 30%), linear-gradient(135deg, #0F0F10 0%, #161313 52%, #0F0F10 100%)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 -z-20 h-72 opacity-80"
+        style={{
+          clipPath:
+            'polygon(0 100%, 0 72%, 15% 42%, 28% 70%, 42% 24%, 55% 66%, 68% 36%, 81% 68%, 100% 28%, 100% 100%)',
+          background: 'linear-gradient(180deg, rgba(239,43,45,.28), rgba(15,15,16,.96) 82%)',
+        }}
+      />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[.92fr_1.08fr] lg:gap-20 lg:px-10">
+        <div className="reveal-up">
+          <span className="text-xs font-bold uppercase tracking-[0.24em] text-[#EF2B2D]">Start a Conversation</span>
+          <h2 className="mt-5 max-w-2xl text-4xl font-semibold tracking-[-0.045em] text-white sm:text-5xl lg:text-6xl">
+            Ready to Start Your Project?
+          </h2>
+          <p className="mt-6 max-w-xl text-base leading-8 text-white/60 sm:text-lg">
+            Get a free consultation and let&apos;s discuss how we can help your business grow.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="#quote-form"
+              className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#EF2B2D] px-6 text-sm font-semibold text-white shadow-[0_18px_44px_rgba(239,43,45,.25)] transition duration-300 hover:-translate-y-1 hover:bg-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF2B2D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F0F10]"
+            >
+              Get a Free Quote
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-white/20 bg-white/[0.04] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            >
+              Contact Us
+            </Link>
+          </div>
+
+          <div className="mt-10 flex items-center gap-3 text-sm text-white/55">
+            <span className="h-2 w-2 rounded-full bg-[#EF2B2D] shadow-[0_0_16px_#EF2B2D]" />
+            No commitment. Just a practical conversation about your project.
+          </div>
+        </div>
+
+        <div id="quote-form" className="reveal-up reveal-delay-2 scroll-mt-28 rounded-[24px] border border-white/15 bg-white/[0.07] p-5 shadow-[0_35px_90px_rgba(0,0,0,.45)] backdrop-blur-xl sm:p-7 lg:p-8">
+          <div className="mb-7">
+            <h3 className="text-2xl font-semibold text-white">Tell us what you need</h3>
+            <p className="mt-2 text-sm leading-6 text-white/50">Share a few details and we will respond with the right next step.</p>
+          </div>
+
+          {success && (
+            <div role="status" className="mb-5 flex items-start gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-200">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+              <span>{success}</span>
             </div>
-          </div>
+          )}
 
-          {/* Right Column - Form */}
-          <div>
-            {/* Success/Error Messages */}
-            {success && (
-              <div className="mb-4 p-4 bg-green-900/30 border border-green-700 rounded-lg flex items-start gap-3 animate-fadeIn">
-                <CheckCircle className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
-                <p className="text-sm text-green-300">{success}</p>
-              </div>
-            )}
-            {error && (
-              <div className="mb-4 p-4 bg-red-900/30 border border-red-700 rounded-lg flex items-start gap-3 animate-fadeIn">
-                <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-                <p className="text-sm text-red-300">{error}</p>
-              </div>
-            )}
+          {error && (
+            <div role="alert" className="mb-5 flex items-start gap-3 rounded-xl border border-red-400/20 bg-red-400/10 p-4 text-sm text-red-200">
+              <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+              <span>{error}</span>
+            </div>
+          )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Row 1: Name & Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name"
-                    className="bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-white/30 transition-colors placeholder-gray-500 w-full"
-                    required
-                    disabled={loading}
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your Email"
-                    className="bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-white/30 transition-colors placeholder-gray-500 w-full"
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              {/* Row 2: Phone & Company */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="tel"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-white/30 transition-colors placeholder-gray-500 w-full"
-                    required
-                    disabled={loading}
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    id="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder="Company Name"
-                    className="bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-white/30 transition-colors placeholder-gray-500 w-full"
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              {/* Row 3: Textarea */}
-              <div>
-                <textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  placeholder="Tell us about your project..."
-                  rows={4}
-                  className="bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-white/30 transition-colors placeholder-gray-500 w-full min-h-[120px] resize-y"
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
+          <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-2 text-xs font-medium text-white/65">
+              Full Name
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 disabled={loading}
-                className="w-full bg-white text-[#0a0a0a] font-bold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 size={18} className="animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Get a Free Quote
-                    <ArrowRight size={18} className="inline-block" />
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
+                placeholder="Your name"
+                className="h-12 rounded-xl border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#EF2B2D] focus:ring-2 focus:ring-[#EF2B2D]/20 disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            </label>
+
+            <label className="grid gap-2 text-xs font-medium text-white/65">
+              Email Address
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                placeholder="you@company.com"
+                className="h-12 rounded-xl border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#EF2B2D] focus:ring-2 focus:ring-[#EF2B2D]/20 disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            </label>
+
+            <label className="grid gap-2 text-xs font-medium text-white/65">
+              Phone Number
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                placeholder="+91 XXXXX XXXXX"
+                className="h-12 rounded-xl border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#EF2B2D] focus:ring-2 focus:ring-[#EF2B2D]/20 disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            </label>
+
+            <label className="grid gap-2 text-xs font-medium text-white/65">
+              Company
+              <input
+                id="company"
+                name="company"
+                type="text"
+                autoComplete="organization"
+                value={formData.company}
+                onChange={handleChange}
+                disabled={loading}
+                placeholder="Company name"
+                className="h-12 rounded-xl border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#EF2B2D] focus:ring-2 focus:ring-[#EF2B2D]/20 disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            </label>
+
+            <label className="grid gap-2 text-xs font-medium text-white/65 sm:col-span-2">
+              Project Details
+              <textarea
+                id="description"
+                name="description"
+                rows={5}
+                value={formData.description}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                placeholder="Briefly describe your project, goals, or idea..."
+                className="min-h-36 resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-white/30 focus:border-[#EF2B2D] focus:ring-2 focus:ring-[#EF2B2D]/20 disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            </label>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="group inline-flex h-14 items-center justify-center gap-3 rounded-xl bg-[#EF2B2D] px-6 text-sm font-semibold text-white transition duration-300 hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-2"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Get a Free Quote
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </div>
     </section>
   )
 }
-
-export default CTA

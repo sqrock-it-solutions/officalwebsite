@@ -1,116 +1,87 @@
-import React from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight, Handshake, MessageSquareText, Target } from 'lucide-react'
 
-const MetricsAndProblemSolution: React.FC = () => {
-  const metrics = [
-    { value: '150+', label: 'Projects Delivered' },
-    { value: '80+', label: 'Happy Clients' },
-    { value: '2+', label: 'Years of Experience' },
-    { value: '98%', label: 'Client Satisfaction' },
-  ];
+const values = [
+  {
+    title: 'Result Driven Approach',
+    description: 'Every decision connects back to a clear business outcome.',
+    icon: Target,
+  },
+  {
+    title: 'Transparent Communication',
+    description: 'Clear updates and honest guidance at every stage.',
+    icon: MessageSquareText,
+  },
+  {
+    title: 'Long Term Partnership',
+    description: 'Solutions that keep working as your business grows.',
+    icon: Handshake,
+  },
+]
 
-  const solutions = [
-    'Automate Processes',
-    'Save Time & Cost',
-    'Improve Productivity',
-    'Focus on What Matters',
-  ];
-
+export default function AboutSection() {
   return (
-    <>
-      {/* Section 1: Metrics Bar */}
-      <section className="bg-gray-50/50 border-y border-gray-100 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x md:divide-gray-200 text-center">
-            {metrics.map((metric, index) => (
-              <div
-                key={index}
-                className={`${
-                  index % 2 === 0 ? 'border-r border-gray-200 md:border-r-0' : ''
-                } md:border-r-0 ${
-                  index > 0 ? 'md:pl-8' : ''
-                } ${index < metrics.length - 1 ? 'md:pr-8' : ''}`}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-2">
-                  {metric.value}
+    <section id="about" className="bg-[#F5F5F5] py-24 sm:py-28 lg:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:px-10">
+        <div className="reveal-on-scroll">
+          <span className="text-xs font-bold uppercase tracking-[0.24em] text-[#EF2B2D]">Why SQROCK</span>
+          <h2 className="mt-4 text-4xl font-semibold uppercase leading-[1.04] tracking-[-0.04em] text-[#0F0F10] sm:text-5xl">
+            Why Businesses<br className="hidden sm:block" /> Choose SQROCK
+          </h2>
+          <p className="mt-6 max-w-xl text-base leading-8 text-black/55 sm:text-lg">
+            We combine strategy, engineering, and hands-on collaboration to create dependable digital products. The focus stays simple: understand the challenge, build the right solution, and make it easier for your business to move forward.
+          </p>
+
+          <Link
+            href="/about"
+            className="group mt-8 inline-flex items-center gap-3 rounded-xl border border-[#0F0F10] px-5 py-3 text-sm font-semibold text-[#0F0F10] transition duration-300 hover:bg-[#0F0F10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF2B2D]"
+          >
+            Learn More About Us
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
+
+          <div className="mt-10 grid gap-3">
+            {values.map((value) => {
+              const Icon = value.icon
+
+              return (
+                <div key={value.title} className="group flex items-start gap-4 rounded-2xl border border-black/[0.07] bg-white p-4 transition duration-300 hover:border-[#EF2B2D]/25 hover:shadow-lg">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-[#EF2B2D]">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#0F0F10]">{value.title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-black/50">{value.description}</p>
+                  </div>
                 </div>
-                <div className="text-sm md:text-base text-gray-500 font-medium">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
-      </section>
 
-      {/* Section 2: Problem vs Solution Block */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-start">
-            {/* Left Column: The Problem */}
-            <div>
-              <div className="bg-gray-100 rounded-full px-4 py-1 inline-block mb-6">
-                <span className="text-xs font-bold text-gray-600 tracking-wider uppercase">
-                  THE PROBLEM
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a0a] leading-tight mb-4">
-                Manual Work Slows Growth.
-              </h2>
-              <p className="text-gray-600 md:text-lg">
-                Outdated systems, scattered data and manual processes can hold your business back,
-                leading to lost time, higher costs and missed opportunities.
-              </p>
-            </div>
+        <div className="reveal-on-scroll relative">
+          <div className="absolute -inset-5 rounded-[32px] bg-[#EF2B2D]/10 blur-2xl" />
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] border border-black/10 bg-white shadow-[0_30px_80px_rgba(15,15,16,.16)]">
+            <Image
+              src="/abouthero.png"
+              alt="SQROCK IT Solutions modern office"
+              fill
+              sizes="(max-width: 1024px) 92vw, 52vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+          </div>
 
-            {/* Center: Arrow */}
-            <div className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full border border-gray-200 mt-16">
-              <ArrowRight size={24} className="text-gray-600" />
+          <div className="absolute -bottom-7 left-5 right-5 rounded-[20px] border border-white/15 bg-[#242424]/95 p-5 text-white shadow-2xl backdrop-blur-xl sm:-left-8 sm:right-auto sm:max-w-sm sm:p-6">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#EF2B2D] shadow-[0_0_30px_rgba(239,43,45,.35)]">
+              <Target className="h-5 w-5" aria-hidden="true" />
             </div>
-            <div className="flex lg:hidden justify-center w-full mt-4">
-              <div className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center rotate-90">
-                <ArrowRight size={24} className="text-gray-600" />
-              </div>
-            </div>
-
-            {/* Right Column: Our Solution */}
-            <div>
-              <div className="bg-gray-100 rounded-full px-4 py-1 inline-block mb-6">
-                <span className="text-xs font-bold text-gray-600 tracking-wider uppercase">
-                  OUR SOLUTION
-                </span>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Left part: Heading and Paragraph */}
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a0a] leading-tight mb-4">
-                    Smarter Solutions for a Bigger Tomorrow.
-                  </h2>
-                  <p className="text-gray-600 md:text-lg">
-                    We build custom digital solutions that automate your work, improve efficiency and
-                    help you scale faster.
-                  </p>
-                </div>
-
-                {/* Right part: Checklist */}
-                <div className="space-y-3">
-                  {solutions.map((solution, index) => (
-                    <div key={index} className="flex items-center">
-                      <div className="bg-gray-100 rounded-full p-1 mr-3 flex-shrink-0">
-                        <Check size={16} className="text-[#0a0a0a]" />
-                      </div>
-                      <span className="font-medium text-[#0a0a0a]">{solution}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#EF2B2D]">Our Mission</span>
+            <p className="mt-3 text-lg font-semibold leading-7">Build technology that makes business progress feel clear, practical, and possible.</p>
           </div>
         </div>
-      </section>
-    </>
-  );
-};
-
-export default MetricsAndProblemSolution;
+      </div>
+    </section>
+  )
+}

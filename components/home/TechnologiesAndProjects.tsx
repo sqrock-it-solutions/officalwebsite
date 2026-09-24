@@ -1,194 +1,81 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import {
-  SiReact,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPython,
-  SiTypescript,
-  SiDocker,
-  SiMysql,
-  SiMongodb,
-} from 'react-icons/si';
-import { FaAws as SiAmazonwebservices } from 'react-icons/fa';
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
-const technologies = [
-  { name: 'React', icon: SiReact },
-  { name: 'Next.js', icon: SiNextdotjs },
-  { name: 'Node.js', icon: SiNodedotjs },
-  { name: 'Python', icon: SiPython },
-  { name: 'TypeScript', icon: SiTypescript },
-  { name: 'AWS', icon: SiAmazonwebservices },
-  { name: 'Docker', icon: SiDocker },
-  { name: 'MySQL', icon: SiMysql },
-  { name: 'MongoDB', icon: SiMongodb },
-];
-
-interface Project {
-  id: number;
-  image: string;
-  category: string;
-  name: string;
-  title: string;
-  metric: string;
-}
-
-const projectsData: Project[] = [
+const projects = [
   {
-    id: 1,
-    image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85',
-    category: 'Web App',
-    name: 'RetailPro',
-    title: 'E-commerce Platform',
-    metric: 'Increased sales by 2.5x',
+    name: 'E-Commerce Website',
+    type: 'E-Commerce Experience',
+    image: '/assets/services/1.png',
   },
   {
-    id: 2,
-    image:
-      'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85',
-    category: 'Mobile App',
-    name: 'TaskTrack',
-    title: 'Project Management App',
-    metric: 'Improved team productivity by 40%',
+    name: 'Education Platform',
+    type: 'Learning Technology',
+    image: '/assets/services/3.png',
   },
   {
-    id: 3,
-    image:
-      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85',
-    category: 'Custom Software',
-    name: 'HealthMate',
-    title: 'Clinic Management System',
-    metric: 'Reduced manual work by 70%',
+    name: 'Business Mobile App',
+    type: 'Cross-Platform Product',
+    image: '/assets/services/5.png',
   },
-];
+  {
+    name: 'Company Website',
+    type: 'Corporate Web Design',
+    image: '/assets/services/4.png',
+  },
+]
 
-const TechnologiesAndProjects: React.FC = () => {
+export default function Projects() {
   return (
-    <>
-      {/* Technologies */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <span className="text-xs font-bold text-gray-500 tracking-wider uppercase block mb-2">
-            TECHNOLOGIES WE WORK WITH
-          </span>
-
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0a0a0a] mb-10">
-            Built with the Best Technologies
-          </h2>
-
-          <div className="flex flex-wrap items-center justify-center md:justify-between gap-8 md:gap-12">
-            {technologies.map((tech) => {
-              const Icon = tech.icon;
-
-              return (
-                <div
-                  key={tech.name}
-                  className="group flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-all duration-300"
-                >
-                  <div className="w-14 h-14 rounded-xl border border-gray-200 flex items-center justify-center bg-white shadow-sm group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300">
-                    <Icon
-                      size={32}
-                      className="text-[#111] group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <span className="text-sm font-medium text-gray-600">
-                    {tech.name}
-                  </span>
-                </div>
-              );
-            })}
+    <section id="portfolio" className="bg-white py-24 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="reveal-on-scroll flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.24em] text-[#EF2B2D]">Selected Work</span>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#0F0F10] sm:text-5xl">Featured Projects</h2>
+            <p className="mt-5 text-base leading-7 text-black/55 sm:text-lg">
+              A selection of digital experiences built around usability, clarity, and business goals.
+            </p>
           </div>
+          <Link
+            href="/contact"
+            className="group inline-flex w-fit items-center gap-2 text-sm font-semibold text-[#0F0F10]"
+          >
+            Discuss Your Project
+            <ArrowRight className="h-4 w-4 text-[#EF2B2D] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
         </div>
-      </section>
 
-      {/* Featured Work */}
-          {/* <FeatureWork /> */}
-    </>
-  );
-};
-
-export default TechnologiesAndProjects;
-
-export function FeatureWork(){
-  return  <section className="py-16 md:py-24 bg-[#fafafa]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <span className="text-xs font-bold text-gray-600 tracking-wider uppercase block mb-2">
-                FEATURED WORK
-              </span>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a0a] leading-tight mb-3">
-                Real Projects. Real Impact.
-              </h2>
-
-              <p className="text-gray-600 md:text-lg max-w-2xl">
-                Take a look at some of our recent work and see how we've helped
-                businesses grow.
-              </p>
-            </div>
-
-            <Link
-              href="/case-studies"
-              className="font-bold text-[#0a0a0a] hover:text-gray-600 transition-colors flex items-center gap-2 flex-shrink-0"
-            >
-              View All Case Studies
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-
-          {/* Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {projectsData.map((project) => (
-              <div key={project.id} className="group">
-
-                {/* Image */}
-                <div className="bg-gray-100 rounded-2xl overflow-hidden aspect-video relative mb-6">
-
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-
-                  {/* Category */}
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gray-700 shadow-sm">
-                    {project.category}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div>
-                  <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">
-                    {project.name}
-                  </p>
-
-                  <h3 className="text-xl font-bold text-[#0a0a0a] mt-1 mb-2">
-                    {project.title}
-                  </h3>
-
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-semibold text-[#0a0a0a]">
-                      {project.metric}
-                    </p>
-
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#0a0a0a] group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
-
+        <div className="mt-14 grid gap-6 sm:grid-cols-2">
+          {projects.map((project) => (
+            <article key={project.name} className="group reveal-on-scroll overflow-hidden rounded-[22px] border border-black/[0.08] bg-[#F5F5F5] transition duration-300 hover:-translate-y-1.5 hover:border-black/15 hover:shadow-[0_24px_60px_rgba(15,15,16,.12)]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#242424]">
+                <Image
+                  src={project.image}
+                  alt={`${project.name} project preview`}
+                  fill
+                  sizes="(max-width: 640px) 92vw, 46vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.035]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
               </div>
-            ))}
-          </div>
+              <div className="flex items-center justify-between gap-5 p-6 sm:p-7">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#EF2B2D]">{project.type}</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-[#0F0F10]">{project.name}</h3>
+                </div>
+                <Link
+                  href="/contact"
+                  aria-label={`Ask about ${project.name}`}
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0F0F10] text-white transition duration-300 group-hover:bg-[#EF2B2D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF2B2D] focus-visible:ring-offset-2"
+                >
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
+  )
 }
