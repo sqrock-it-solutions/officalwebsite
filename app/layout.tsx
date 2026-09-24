@@ -115,11 +115,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <NextTopLoader color="black" />
-        <Navbar />
         <Suspense fallback={<LoadingScreen />}>
           {children}
         </Suspense>
-        <Footer />
       </body>
     </html>
   );

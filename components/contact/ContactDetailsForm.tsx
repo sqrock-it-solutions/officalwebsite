@@ -19,7 +19,7 @@ import {
   FiGithub as Github,
   FiYoutube as Youtube 
 } from 'react-icons/fi'
-import { submitContactForm } from '@/app/contact/actions'
+import { submitContactForm } from '@/app/(webpages)/contact/actions'
 
 const ContactDetailsForm = () => {
   const [loading, setLoading] = useState(false)

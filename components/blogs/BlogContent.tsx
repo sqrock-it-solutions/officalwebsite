@@ -248,7 +248,7 @@ import {
   Brush,
   Factory
 } from 'lucide-react'
-import { subscribeToNewsletter, type BlogPostWithReadTime } from '@/app/blog/actions'
+import { subscribeToNewsletter, type BlogPostWithReadTime } from '@/app/(webpages)/blog/actions'
 import { Share } from 'next/font/google'
 
 // --- Types ---
