@@ -4,6 +4,7 @@ import NextTopLoader from 'nextjs-toploader'
 import { Suspense } from 'react'
 import LoadingScreen from '@/components/LoadingScreen'
 import './globals.css'
+import Script from 'next/script'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -85,6 +86,21 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`h-full ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
       <body className="flex min-h-full flex-col">
+
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18344087142"
+        />
+
+        <Script id="google-ads-tag">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18344087142');
+          `}
+        </Script>
+
         <NextTopLoader color="#EF2B2D" />
         <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
       </body>
