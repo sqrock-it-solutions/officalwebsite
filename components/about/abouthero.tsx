@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Users } from 'lucide-react';
 
 const AboutHero: React.FC = () => {
@@ -22,13 +23,19 @@ const AboutHero: React.FC = () => {
             
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button className="flex items-center gap-2 bg-[#0a0a0a] text-white font-medium px-6 py-3 rounded-md hover:bg-[#1a1a1a] transition-colors duration-200">
+              <Link
+                href="/#contact"
+                className="flex items-center gap-2 bg-[#0a0a0a] text-white font-medium px-6 py-3 rounded-md hover:bg-[#1a1a1a] transition-colors duration-200"
+              >
                 Book a Free Consultation
                 <ArrowRight size={18} className="inline-block" aria-hidden="true" />
-              </button>
-              <button className="flex items-center gap-2 bg-white text-black border border-gray-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition-colors duration-200">
+              </Link>
+              <Link
+                href="#our-story"
+                className="flex items-center gap-2 bg-white text-black border border-gray-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition-colors duration-200"
+              >
                 Get to Know Us
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -41,7 +48,7 @@ const AboutHero: React.FC = () => {
                 alt="About SQROCK - Innovation and Technology"
                 fill
                 className="object-cover"
-                priority
+                preload
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
 

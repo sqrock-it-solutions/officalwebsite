@@ -72,7 +72,7 @@ const ContactDetailsForm = () => {
         setError(result.message)
         setTimeout(() => setError(null), 5000)
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong. Please try again.')
       setTimeout(() => setError(null), 5000)
     } finally {
@@ -156,29 +156,37 @@ const ContactDetailsForm = () => {
                 <p className="font-bold text-[#0a0a0a] text-base mb-1">Follow Us</p>
                 <div className="flex gap-4 text-gray-700 hover:text-black mt-2">
                   <a
-                    href="#"
-                    aria-label="LinkedIn"
+                    href="https://www.linkedin.com/company/145220635"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="SQROCK on LinkedIn"
                     className="hover:text-[#0a0a0a] transition-colors"
                   >
                     <Linkedin className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
-                    aria-label="Instagram"
+                    href="https://www.instagram.com/sqrock.cloud/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="SQROCK on Instagram"
                     className="hover:text-[#0a0a0a] transition-colors"
                   >
                     <Instagram className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
-                    aria-label="GitHub"
+                    href="https://github.com/sqrock-it-solutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="SQROCK on GitHub"
                     className="hover:text-[#0a0a0a] transition-colors"
                   >
                     <Github className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
-                    aria-label="YouTube"
+                    href="https://www.youtube.com/@sqrock-1404"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="SQROCK on YouTube"
                     className="hover:text-[#0a0a0a] transition-colors"
                   >
                     <Youtube className="w-5 h-5" />
